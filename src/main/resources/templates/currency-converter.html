@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <meta charset="UTF-8">
+    <title>환율 계산</title>
+</head>
+<body>
+<h1>환율 계산</h1>
+<br/>
+<h3>송금국가: 미국(USD)</h3>
+<h3>수취국가: <label for="receive_country"></label><select class ="receive_country" id="receive_country">
+    <option value="KRW">한국</option>
+    <option value="JPY">일본</option>
+    <option value="PHP">필리핀</option>
+</select>
+</h3>
+<h3>환율: <span id="exchange_rate"></span></h3>
+<h3>송금액: <label for="money"></label><input type="text" id="money" value=""/> USD</h3>
+<input type="button" id="btn_submit" value="Submit">
+<br/><br/>
+<span id="text"></span>
+
+</body>
+<script type="text/javascript">
+    window.onload = function() {
+        $('.receive_country').val('KRW').trigger('change');
+        $('#money').focus();
+    };
+
+    $(document).ready(function () {
+        $('#btn_submit').click(function () {
+            const exchangeRate = $('#receive_country').val();
+
+            const money = $('#money').val()
+
+            $.ajax({
+                type: 'GET',
+                url: '/api/currencies/' + exchangeRate + '/conversion?money=' + money,
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8'
+            }).done(function (data) {
+                console.log(data);
+                $('#text').html("수취금액은 "+ numberWithCommas(data) + " " + exchangeRate + " 입니다.")
+            }).fail(function (error) {
+                alert(JSON.stringify(error));
+            });
+        })
+
+        $('#receive_country').change(function () {
+            const value = $(this).val();
+
+            $.ajax({
+                type: 'GET',
+                url: '/api/currencies/' + value + '/exchangeRate',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: null
+            }).done(function (data) {
+                console.log(data);
+                $('#exchange_rate').html(numberWithCommas(data) + + " " + value + "/USD")
+            }).fail(function (error) {
+                alert(JSON.stringify(error));
+            });
+        });
+
+    });
+
+    function numberWithCommas(num) {
+        var parts = num.toString().split(".");
+        return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (parts[1] ? "." + parts[1] : "");
+    }
+</script>
+</html>
