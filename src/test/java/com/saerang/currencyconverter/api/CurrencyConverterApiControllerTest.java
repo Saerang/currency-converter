@@ -33,7 +33,7 @@ class CurrencyConverterApiControllerTest {
     }
 
     @Test
-    @Disabled("연속 호출 시 실패 - Mock Test Code 로 만들자")
+//    @Disabled("연속 호출 시 실패 - Mock Test Code 로 만들자")
     void 허용되지_않는_커런시요청() throws Exception {
         // given
         // when

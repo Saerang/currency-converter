@@ -17,7 +17,6 @@ class DefaultExchangeRateServiceTest {
     ExchangeRateService exchangeRateService;
 
     @Test
-    @Disabled("연속 호출 시 실패 - Mock Test Code 로 대체")
     void KRW_환율_가져오기() {
         // given
 

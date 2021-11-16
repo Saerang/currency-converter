@@ -57,7 +57,7 @@ class DefaultExchangeRateServiceMockTest {
         BigDecimal exchangeRate = exchangeRateService.getExchangeRate(CurrencyId.KRW);
 
         // then
-        assertThat(exchangeRate).isEqualTo(krw);
+        assertThat(exchangeRate).isEqualTo(new BigDecimal("1179.08"));
     }
 
 }

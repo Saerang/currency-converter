@@ -31,19 +31,18 @@
     $(document).ready(function () {
         $('#btn_submit').click(function () {
             const exchangeRate = $('#receive_country').val();
-
             const money = $('#money').val()
 
             $.ajax({
                 type: 'GET',
                 url: '/api/currencies/' + exchangeRate + '/conversion?money=' + money,
-                dataType: 'json',
+                dataType: 'text',
                 contentType: 'application/json; charset=utf-8'
             }).done(function (data) {
                 console.log(data);
-                $('#text').html("수취금액은 "+ numberWithCommas(data) + " " + exchangeRate + " 입니다.")
+                $('#text').html("수취금액은 "+ data + " " + exchangeRate + " 입니다.")
             }).fail(function (error) {
-                alert(JSON.stringify(error));
+                console.log(JSON.stringify(error));
             });
         })
 
@@ -53,22 +52,18 @@
             $.ajax({
                 type: 'GET',
                 url: '/api/currencies/' + value + '/exchangeRate',
-                dataType: 'json',
+                dataType: 'text',
                 contentType: 'application/json; charset=utf-8',
                 data: null
             }).done(function (data) {
                 console.log(data);
-                $('#exchange_rate').html(numberWithCommas(data) + + " " + value + "/USD")
+                $('#exchange_rate').html(data + " " + value + "/USD")
             }).fail(function (error) {
-                alert(JSON.stringify(error));
+                console.log(JSON.stringify(error));
             });
         });
 
     });
 
-    function numberWithCommas(num) {
-        var parts = num.toString().split(".");
-        return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (parts[1] ? "." + parts[1] : "");
-    }
 </script>
 </html>

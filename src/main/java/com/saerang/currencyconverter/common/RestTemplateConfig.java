@@ -8,9 +8,9 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class RestTemplateConfig {
 
+    //TODO: 설정 추가필요.
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        // Do any additional configuration here
         return builder.build();
     }
 }

@@ -19,7 +19,7 @@ class ExchangeRateApiControllerTest {
     MockMvc mockMvc;
 
     @Test
-    @Disabled("연속 호출 시 실패 - Mock Test Code 만들자")
+//    @Disabled("연속 호출 시 실패 - Mock Test Code 만들자")
     void KRW_환율가져오기() throws Exception {
         // given
         // when
@@ -31,7 +31,7 @@ class ExchangeRateApiControllerTest {
     }
 
     @Test
-    @Disabled("연속 호출 시 실패 - Mock Test Code 만들자")
+//    @Disabled("연속 호출 시 실패 - Mock Test Code 만들자")
     void AAA_환율가져오기() throws Exception {
         // given
         // when
