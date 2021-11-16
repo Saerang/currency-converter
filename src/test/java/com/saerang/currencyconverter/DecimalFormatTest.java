@@ -13,7 +13,7 @@ public class DecimalFormatTest {
     void testDecimalFormat() {
         // given
         DecimalFormat df = new DecimalFormat("#,###.00");
-        
+
         // when
         BigDecimal bigDecimal2 = new BigDecimal("123456.78");
         BigDecimal bigDecimal3 = new BigDecimal("123456.7");

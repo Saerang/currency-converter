@@ -15,7 +15,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URI;
-import java.util.Map;
 
 @Slf4j
 @Service
@@ -40,7 +39,7 @@ public class DefaultExchangeRateService implements ExchangeRateService {
     }
 
     private CurrencyResponse getCurrencyResponse() {
-        if(this.currencyResponse != null) {
+        if (this.currencyResponse != null) {
             return this.currencyResponse;
         }
 

@@ -1,6 +1,5 @@
 package com.saerang.currencyconverter.api;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -15,11 +14,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 class ExchangeRateApiControllerTest {
+
     @Autowired
     MockMvc mockMvc;
 
     @Test
-//    @Disabled("연속 호출 시 실패 - Mock Test Code 만들자")
     void KRW_환율가져오기() throws Exception {
         // given
         // when
@@ -31,7 +30,6 @@ class ExchangeRateApiControllerTest {
     }
 
     @Test
-//    @Disabled("연속 호출 시 실패 - Mock Test Code 만들자")
     void AAA_환율가져오기() throws Exception {
         // given
         // when
@@ -41,4 +39,5 @@ class ExchangeRateApiControllerTest {
                 .andDo(print())
                 .andExpect(status().isBadRequest());
     }
+
 }

@@ -25,5 +25,4 @@ class CurrencyIdTest {
         assertThatThrownBy(() -> CurrencyId.valueOf("EUR")).isInstanceOf(IllegalArgumentException.class);
     }
 
-
 }

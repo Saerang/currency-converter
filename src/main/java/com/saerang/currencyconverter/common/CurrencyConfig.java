@@ -19,4 +19,5 @@ public class CurrencyConfig {
     public String getAccessKey() {
         return accessKey;
     }
+
 }
