@@ -15,6 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URI;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -24,6 +25,8 @@ public class DefaultExchangeRateService implements ExchangeRateService {
     private final RestTemplate restTemplate;
 
     private final CurrencyConfig currencyConfig;
+
+    private CurrencyResponse currencyResponse;
 
     @Override
     public BigDecimal getExchangeRate(CurrencyId currencyId) {
@@ -37,6 +40,10 @@ public class DefaultExchangeRateService implements ExchangeRateService {
     }
 
     private CurrencyResponse getCurrencyResponse() {
+        if(this.currencyResponse != null) {
+            return this.currencyResponse;
+        }
+
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(currencyConfig.getUrl()).queryParam("access_key", currencyConfig.getAccessKey());
         URI apiUrl = uriComponentsBuilder.build().toUri();
 
@@ -50,12 +57,12 @@ public class DefaultExchangeRateService implements ExchangeRateService {
             throw new IllegalStateException(e);
         }
 
-        CurrencyResponse body = response.getBody();
+        this.currencyResponse = response.getBody();
 
-        if (!body.isSuccess()) {
+        if (!currencyResponse.isSuccess()) {
             throw new IllegalStateException();
         }
 
-        return body;
+        return currencyResponse;
     }
 }
