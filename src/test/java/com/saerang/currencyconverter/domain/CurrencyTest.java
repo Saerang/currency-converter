@@ -9,29 +9,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CurrencyTest {
 
     @Test
-    void 한국_환율정보_생성() {
+    void 커런시정보가져오기() {
         // given
-        CurrencyId currencyId = CurrencyId.KRW;
+        String currencyId = "KRW";
+        int scale = 2;
+        BigDecimal exchangeRate = new BigDecimal("1000");
 
         // when
-        Currency currency = new Currency(currencyId, new BigDecimal("1119.93"));
+        Currency currency = new Currency(currencyId, scale, exchangeRate);
 
         // then
         assertThat(currency.getCurrencyId()).isEqualTo(currencyId);
+        assertThat(currency.getExchangeRate()).isEqualTo(exchangeRate);
+        assertThat(currency.getScale()).isEqualTo(scale);
     }
 
     @Test
-    void 환율정보_변환된_돈가져오기() {
+    void 환전금액_계산() {
         // given
-        BigDecimal inputMoney = new BigDecimal("100");
-        CurrencyId currencyId = CurrencyId.KRW;
-        Currency currency = new Currency(currencyId, new BigDecimal("1119.93"));
+        Currency currency = new Currency("KRW", 2, new BigDecimal("1000"));
 
         // when
-        BigDecimal exchangedMoney = currency.getExchangedMoney(inputMoney);
+        BigDecimal exchange = currency.getExchange(new BigDecimal("100"));
 
         // then
-        assertThat(exchangedMoney).isEqualTo(new BigDecimal("111993.00"));
+        assertThat(exchange).isEqualTo(new BigDecimal("100000.00"));
     }
-
 }

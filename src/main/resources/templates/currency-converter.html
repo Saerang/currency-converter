@@ -16,7 +16,7 @@
 </select>
 </h3>
 <h3>환율: <span id="exchange_rate"></span></h3>
-<h3>송금액: <label for="money"></label><input type="text" id="money" value=""/> USD</h3>
+<h3>송금액: <label for="amount"></label><input type="text" id="amount" value=""/> USD</h3>
 <input type="button" id="btn_submit" value="Submit">
 <br/><br/>
 <span id="text"></span>
@@ -31,11 +31,11 @@
     $(document).ready(function () {
         $('#btn_submit').click(function () {
             const exchangeRate = $('#receive_country').val();
-            const money = $('#money').val()
+            const amount = $('#amount').val()
 
             $.ajax({
                 type: 'GET',
-                url: '/api/currencies/' + exchangeRate + '/conversion?money=' + money,
+                url: '/api/currencies/' + exchangeRate + '/exchange?amount=' + amount,
                 dataType: 'text',
                 contentType: 'application/json; charset=utf-8'
             }).done(function (data) {

@@ -1,24 +1,41 @@
 package com.saerang.currencyconverter.domain;
 
+import com.saerang.currencyconverter.common.BaseTimeEntity;
+import com.saerang.currencyconverter.common.validation.CurrencyId;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 @Getter
-public class Currency {
+@Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Currency extends BaseTimeEntity {
 
-    private final CurrencyId currencyId;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    private final BigDecimal exchangeRate;
+    @CurrencyId
+    @NotNull(message = "currencyId may not be null.")
+    @Column(name="currencyUnique" , unique=true)
+    private String currencyId;
 
-    public Currency(CurrencyId currencyId, BigDecimal exchangeRate) {
+    private int scale;
+
+    private BigDecimal exchangeRate;
+
+    public Currency(String currencyId, int scale, BigDecimal exchangeRate) {
         this.currencyId = currencyId;
+        this.scale = scale;
         this.exchangeRate = exchangeRate;
     }
 
-    public BigDecimal getExchangedMoney(BigDecimal money) {
-        return money.multiply(this.exchangeRate).setScale(currencyId.getScale(), RoundingMode.FLOOR);
+    public BigDecimal getExchange(BigDecimal amount) {
+        return amount.multiply(this.exchangeRate).setScale(this.scale, RoundingMode.FLOOR);
     }
 
 }
