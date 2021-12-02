@@ -22,7 +22,7 @@ class CurrencyRepositoryTest {
     @Test
     void 기본테스트() {
         // given
-        Currency currency = new Currency("KRW", 2, new BigDecimal("1000"));
+        Currency currency = new Currency("AAA", 2, new BigDecimal("1000"));
 
         // when
         Currency savedCurrency = currencyRepository.save(currency);

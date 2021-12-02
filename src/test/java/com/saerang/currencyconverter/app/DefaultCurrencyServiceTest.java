@@ -21,10 +21,8 @@ class DefaultCurrencyServiceTest extends BaseTest {
     @Test
     void 환전하기() {
         // given
-        CurrencyInfo krw = CurrencyInfo.KRW;
-
         // when
-        BigDecimal exchangedAmount = currencyService.exchange(krw.getName(), BigDecimal.TEN);
+        BigDecimal exchangedAmount = currencyService.exchange("AAA", BigDecimal.TEN);
 
         // then
         assertThat(exchangedAmount).isEqualTo(new BigDecimal("10000.00"));
@@ -35,17 +33,15 @@ class DefaultCurrencyServiceTest extends BaseTest {
         // given
         // when
         // then
-        assertThatThrownBy(() -> currencyService.exchange("AAA", BigDecimal.TEN))
+        assertThatThrownBy(() -> currencyService.exchange("ZZZ", BigDecimal.TEN))
                 .isInstanceOf(CurrencyNotFoundException.class);
     }
 
     @Test
     void 환율하기() {
         // given
-        CurrencyInfo krw = CurrencyInfo.KRW;
-
         // when
-        BigDecimal exchangeRate = currencyService.getExchangeRate(krw.getName());
+        BigDecimal exchangeRate = currencyService.getExchangeRate("AAA");
 
         // then
         assertThat(exchangeRate).isEqualTo(new BigDecimal("1000"));
@@ -56,7 +52,7 @@ class DefaultCurrencyServiceTest extends BaseTest {
         // given
         // when
         // then
-        assertThatThrownBy(() -> currencyService.getExchangeRate("AAA"))
+        assertThatThrownBy(() -> currencyService.getExchangeRate("ZZZ"))
                 .isInstanceOf(CurrencyNotFoundException.class);
     }
 

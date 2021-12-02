@@ -11,7 +11,7 @@ public class CurrencyTest {
     @Test
     void 커런시정보가져오기() {
         // given
-        String currencyId = "KRW";
+        String currencyId = "AAA";
         int scale = 2;
         BigDecimal exchangeRate = new BigDecimal("1000");
 
@@ -27,7 +27,7 @@ public class CurrencyTest {
     @Test
     void 환전금액_계산() {
         // given
-        Currency currency = new Currency("KRW", 2, new BigDecimal("1000"));
+        Currency currency = new Currency("AAA", 2, new BigDecimal("1000"));
 
         // when
         BigDecimal exchange = currency.getExchange(new BigDecimal("100"));

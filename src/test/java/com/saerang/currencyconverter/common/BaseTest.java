@@ -21,13 +21,10 @@ public class BaseTest {
 
     @BeforeEach
     public void setUp() {
-        CurrencyInfo krw = CurrencyInfo.KRW;
-        CurrencyInfo jpy = CurrencyInfo.JPY;
-        new Currency(krw.getName(), 2, new BigDecimal("1000"));
         currencyRepository.saveAll(
                 List.of(
-                        new Currency(krw.getName(), krw.getScale(), new BigDecimal("1000")),
-                        new Currency(jpy.getName(), jpy.getScale(), new BigDecimal("100"))
+                        new Currency("AAA", 2, new BigDecimal("1000")),
+                        new Currency("BBB", 0, new BigDecimal("100"))
                 )
         );
     }

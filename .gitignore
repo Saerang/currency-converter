@@ -38,3 +38,6 @@ out/
 
 ### KEY ###
 #*.yml
+
+### LOG ###
+spy.log

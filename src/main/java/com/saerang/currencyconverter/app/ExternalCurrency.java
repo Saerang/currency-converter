@@ -14,6 +14,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.annotation.PostConstruct;
 import java.net.URI;
 
 @Slf4j
@@ -27,10 +28,8 @@ public class ExternalCurrency {
 
     private final CurrencyRepository currencyRepository;
 
-    /** TODO: 나중에 배치로 만들어서 업데이트 부분만 할 듯. UTC 0으로 배치 변경.
-     ** TODO: 테스트코드 Currency 를 KRW 안쓰면 풀어도 됨.
-    */
-//    @PostConstruct
+    // TODO: 나중에 배치로 만들어서 업데이트 부분만 할 듯. UTC 0으로 배치 변경.
+    @PostConstruct
     public void getCurrencyResponse() {
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder
                 .fromHttpUrl(currencyConfig.getUrl())
