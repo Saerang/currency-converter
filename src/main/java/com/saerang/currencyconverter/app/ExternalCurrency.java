@@ -4,7 +4,6 @@ import com.saerang.currencyconverter.app.dto.CurrencyResponseDto;
 import com.saerang.currencyconverter.app.enumerate.CurrencyInfo;
 import com.saerang.currencyconverter.common.CurrencyConfig;
 import com.saerang.currencyconverter.common.exception.InternalServerErrorException;
-import com.saerang.currencyconverter.domain.Currency;
 import com.saerang.currencyconverter.domain.repository.CurrencyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,11 +14,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.annotation.PostConstruct;
 import java.net.URI;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Component
@@ -32,7 +27,9 @@ public class ExternalCurrency {
 
     private final CurrencyRepository currencyRepository;
 
-    //TODO: 나중에 배치로 만들어서 UTC 0으로 배치 변경, 테스트 코드 만들때 불편함.
+    /** TODO: 나중에 배치로 만들어서 업데이트 부분만 할 듯. UTC 0으로 배치 변경.
+     ** TODO: 테스트코드 Currency 를 KRW 안쓰면 풀어도 됨.
+    */
 //    @PostConstruct
     public void getCurrencyResponse() {
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder
