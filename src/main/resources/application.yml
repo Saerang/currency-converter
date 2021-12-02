@@ -7,6 +7,10 @@ spring:
         show_sql: true
         format_sql: true
 
+logging:
+  level:
+    com.saerang.currencyconverter: debug
+
 # ex)
 # http://api.currencylayer.com/live
 #
