@@ -1,6 +1,5 @@
 package com.saerang.currencyconverter.app;
 
-import com.saerang.currencyconverter.app.enumerate.CurrencyInfo;
 import com.saerang.currencyconverter.common.BaseTest;
 import com.saerang.currencyconverter.common.exception.CurrencyNotFoundException;
 import org.junit.jupiter.api.Test;
