@@ -17,7 +17,7 @@ import java.math.RoundingMode;
 public class Currency extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @CurrencyId
     @NotNull(message = "currencyId may not be null.")
